@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+</head>
+<!--  
+Task: Create a contact form with the following fields: 
+o Full name (text input) 
+o Email (email input) 
+o Phone number (tel input) 
+o Subject (dropdown menu) 
+o Message (textarea) 
+o Submit button 
+
+Additional Requirements: 
+o Use appropriate form validation using required, minlength, maxlength, and pattern. 
+o Link form labels with their corresponding inputs using the for attribute.
+ -->
+
+<body>
+    <form action="">
+        <table border="0" cellspacing="15">
+            <caption><u>
+                    <h2>Contact Form</h2>
+                </u></caption>
+            <tr>
+                <td width="120"><label for="fullname">Full name: </label></td>
+                <!-- Input validation using pattern attribute
+                     pattern="[A-Za-z.\s]{3,50}" means
+                     only allow capital letters, small letters, . , and white space
+                     minimum length is 3 and maximum length is 50-->
+                <td><input required type="text" size="30" id="fullname" pattern="[A-Za-z.\s]{3,50}"
+                        placeholder="Enter your Full name"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email: </label></td>
+                <!-- Input validation using pattern attribute
+                     pattern="[a-z0-9._]+@[a-z]+.[a-z]{2,3}" means
+                     only allow small letters, numbers, . , _ , followed by
+                     "@" symbol, followed by small letters followed by "." symbol
+                     followed by 2 or 3 characters of lower case -->
+                <td><input type="email" id="email" size="30" required pattern="[a-z0-9._]+@[a-z]+.[a-z]{2,3}"
+                        placeholder="Enter your email "></td>
+            </tr>
+            <tr>
+                <td><label for="phonenumber">Phone number: </label> </td>
+                <!-- Input validation using pattern attribute
+                     pattern="[6789][0-9]{9,9}" means
+                     only allow any single digit from 6 to 9 followed by
+                     exactly 9 digits from 0 to 9 -->
+                <td><input type="tel" id="phonenumber" size="30" maxlength="10" required pattern="[6789][0-9]{9,9}"
+                        placeholder="Enter your Phone Number"></td>
+            </tr>
+            <tr>
+                <td><label for="subject">Subject: </label></td>
+                <td><select id="subject">
+                        <!-- Attributes:: 
+                         selected: initially selected 
+                         disabled: option cannot be selected by user
+                         hidden: option will get hidden once the user clicks on drop down menu-->
+                        <option disabled>Select your subject: </option>
+                        <option>HTML</option>
+                        <option>CSS</option>
+                        <option>JAVA</option>
+                        <option>Python</option>
+                        <option>C++</option>
+                        <option>C</option>
+                        <option>PHP</option>
+                        <option>React</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td valign="top"><label for="message">Message: </label></td>
+                <td><textarea id="message" rows="4" cols="29" minlength="2" required
+                        placeholder="Enter your query..."></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2"><input type="submit" value="Submit"></th>
+            </tr>
+        </table>
+
+    </form>
+</body>
+
+</html>
