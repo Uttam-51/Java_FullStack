@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .main {
+      
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+        background-color: rgb(0, 0, 0);
+      }
+      .ic {
+
+      
+        position: relative;
+        height: 0;
+        width: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgb(26, 214, 133);
+        transition: width 1s, height 1s;  
+      }
+
+      .main:hover .ic{
+
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="effect"></div>
+      <div class="ic">
+        <i
+          class="fa-solid fa-house"
+          style="color: #ffffff; font-size: 3rem"
+        ></i>
+      </div>
+    </div>
+  </body>
+</html>
