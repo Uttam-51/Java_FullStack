@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* setting up the main div or container */
+      .main {
+        width: 400px;
+        height: 300px;
+        background-color: #e07070;
+        border: 2px solid #e07070;
+      }
+
+      .border {
+        
+        margin: 4rem 5rem 0rem 6rem;
+        width: 194px;
+        height: 44px;
+        border: 3px solid #2fdab8;
+        transition: 0.3s;
+        transform: translateY(50px);
+      }
+
+      /* styling the button and removing its border */
+      .btn {
+        
+        width: 200px;
+        height: 50px;
+        margin-left: 6rem;
+        font-size: 1.5rem;
+        text-shadow: 0px 2px 3px black;
+        letter-spacing: 2px;
+        color: white;
+        background-color: #2fdab8;
+        border: none;
+        
+      }
+
+      .border:hover {
+        transform: translateY(50px) scaleY(1.5) scaleX(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="border"></div>
+      <button class="btn">Shop Now</button>
+    </div>
+  </body>
+</html>
