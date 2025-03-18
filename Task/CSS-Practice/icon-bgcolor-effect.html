@@ -11,45 +11,45 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- This example depicts the use of importing icons from FONTAWESOME and applying a cool effect to
+     its background whenever hovered on -->
     <style>
+      /* setting up the main div or container */
       .main {
-      
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        border: 2px solid;
-        background-color: rgb(0, 0, 0);
+        width: 300px;
+        height: 300px;
+        background-color: #212121;
+        overflow: hidden;
       }
-      .ic {
-
-      
-        position: relative;
-        height: 0;
-        width: 0;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgb(26, 214, 133);
-        transition: width 1s, height 1s;  
+    
+      /* styling the icon we imported from the FONTAWESOME */
+      i {
+        width: 90px;
+        height: 80px;
+        margin-top: 0px;
+        color: white;
+        font-size: 5rem;
+        display: block;
+        transform: translate(6.5rem, -12rem);
       }
-
-      .main:hover .ic{
-
-        height: 100%;
-        width: 100%;
+      .bg-new {
+        width: 300px;
+        height: 300px;
+        background-color: #2fdab8;
+        transform: scale(0);
+        transition: 0.3s;
+      }
+      .main:hover .bg-new {
+        transform: scale(1);
+        transition: 0.3s;
+    
       }
     </style>
   </head>
   <body>
     <div class="main">
-      <div class="effect"></div>
-      <div class="ic">
-        <i
-          class="fa-solid fa-house"
-          style="color: #ffffff; font-size: 3rem"
-        ></i>
-      </div>
+      <div class="bg-new"></div>
+      <i class="fa-solid fa-house"></i>
     </div>
   </body>
 </html>
