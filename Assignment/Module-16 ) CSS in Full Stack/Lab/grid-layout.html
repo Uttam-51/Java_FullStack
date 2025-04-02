@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV catalogue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffd6c4;
+            color: #F1F5F9;
+
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Creates a 3x3 grid */
+            gap: 45px;
+            /* Adds spacing between the cards */
+            width: fit-content;
+            max-width: 100%;
+            /* Center the grid horizontally with some space from top */
+            margin: 50px auto;
+        }
+
+        .product-card {
+            width: 28vw;
+            min-width: 300px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .img-sec {
+            /* Ensures the image takes up the entire width of the container */
+            width: 100%;
+            border-radius: 8px;
+            /* border: 2px solid black; */
+            height: 70%;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 1.3rem;
+            color: #333333;
+            /* Dark Gray for text */
+            transition: color 0.3s ease;
+            /* Smooth color transition on hover */
+        }
+
+        .product-card p {
+            color: rgb(255, 77, 0);
+            /* Soft Gold for prices */
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            /* Smooth color transition on hover */
+        }
+
+        /* Hover Effect */
+        .product-card:hover {
+            transform: scale(1.2);
+            /* Lifts and slightly scales the card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Darker shadow on hover */
+            background-color: #f9f9f9;
+            /* Lighter background color on hover */
+        }
+
+        .product-card:hover *{
+            color: #1E3A8A;
+            /* Deep Blue text for all the child elements on hover */
+        }
+
+
+        @media screen and (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* Changes to 2 columns on smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                /* 1 column on very small screens */
+            }
+        }
+    </style>
+</head>
+<!-- 
+ Create a 3x3 grid of product cards using CSS Grid. Each card should contain: 
+o A product image. 
+o A product title. 
+o A price. 
+ 
+Additional Requirements: 
+o Use grid-template-columns to create the grid layout.  
+o Use grid-gap to add spacing between the grid items. 
+o Apply hover effects to each card for better interactivity.
+-->
+<body>
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81EDG5QnHIL._SX679_.jpg" alt="TCL 75 inch">
+            </div>
+            <div class="text-sec">
+                <h3>TCL 4K UHD Smart QLED(75 inches)</h3>
+                <p>Price: ₹69,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81nikv9C6lL._SX679_.jpg" alt="Samsung (65 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Samsung (65 inches) 4K Ultra HD</h3>
+                <p>Price: ₹65,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/71tfi6iFPYL._AC_UL480_FMwebp_QL65_.jpg"
+                    alt="MI Xiaomi (65 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>MI Xiaomi X Pro QLED(65 inches)</h3>
+                <p>Price: ₹64,999</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81h-r-3hioL._SX679_.jpg" alt="Sony BRAVIA 2(65 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Sony BRAVIA 2 4K UHD(65 inches)</h3>
+                <p>Price: ₹86,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/61IZMKHnbJL._SX679_.jpg" alt="LG 4K(65 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>LG 4K UHD Smart LED TV(65 inches)</h3>
+                <p>Price: ₹64,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81OmhFfS-hL._SX679_.jpg"
+                    alt="Samsung D-Series(65 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Samsung D-Series 4K VPro(65 inches)</h3>
+                <p>Price: ₹67,990</p>
+            </div>
+
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81zPuf-0ETL._AC_UL480_FMwebp_QL65_.jpg"
+                    alt="Sony BRAVIA 2 4K(55 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Sony BRAVIA 2 4K(55 inches)</h3>
+                <p>Price: ₹57,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/81h-r-3hioL._SX679_.jpg"
+                    alt="Sony BRAVIA-3 4K UHD(55 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Sony BRAVIA-3 4K UHD(55 inches)</h3>
+                <p>Price: ₹75,990</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="img-sec">
+                <img src="https://m.media-amazon.com/images/I/71es6Y2VVBL._SX679_.jpg"
+                    alt="Hisense 4K UHD QLED (55 inches)">
+            </div>
+            <div class="text-sec">
+                <h3>Hisense 4K UHD QLED (55 inches)</h3>
+                <p>Price: ₹59,999</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
