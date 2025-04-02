@@ -1,50 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      form {
+        width: fit-content;
+        margin: auto auto;
+        background-color: antiquewhite;
+      }
+      hr {
+        border: 1px solid black;
+        margin-bottom: 1px;
+      }
+      #hr1 {
+        border: 3px solid black;
+        margin: 1px 0 10px 0;
+      }
+      .labels {
+        vertical-align: top;
+      }
 
-<body>
+      .h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 2.2rem;
+        background: none;
+      }
+      .p1 {
+        font-size: 0.88rem;
+        margin: 0;
+        padding: 0;
+      }
+      .heading {
+        padding: 0;
+        text-align: center;
+        background-color: aqua;
+        margin: 1.5rem auto;
+      }
+      .labels {
+        font-size: 1.2rem;
+      }
+
+      #small-text {
+        margin: 0rem;
+        padding: 0rem;
+        font-size: 0.65rem;
+      }
+    </style>
+  </head>
+
+  <body>
     <form action="">
-        <fieldset>
-            <br>
-            <div align="center">
-                <big>
-                    <big><big><big>Complaints</big></big></big>
-                </big> <br>
-                <small>Help us improve our service.</small>
-                <br><br>
-            </div>
-            <hr><br>
-            <table>
-                <tr>
-                    <td valign="top"><label for="">Full name *</label></td>
-                    <td><input type="text"><br><small><small>First</small></small><br>&nbsp;</td>
-                    <td><input type="text"><br><small><small>Last</small></small><br>&nbsp;</td>
-
-                </tr>
-
-                <tr>
-                    <td valign="top"><label for="">Email *</label></td>
-                    <td colspan="2"><input type="email"><br>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td valign="top"><label for="">Phone</label></td>
-                    <td colspan="2"><input type="tel"><br>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td valign="top"><label for="">Where did we go wrong? * &nbsp;&nbsp;&nbsp;</label></td>
-                    <td colspan="2"><textarea rows="4" cols="45" name="" id=""></textarea><br>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="3" align="center"><input type="submit" value="Submit"></td>
-                </tr>
-            </table>
-        </fieldset>
+      <fieldset>
+        <div class="heading">
+          <p class="h1">Complaints</p>
+          <p class="p1">Help us improve our service.</p>
+        </div>
+        <hr />
+        <hr id="hr1" />
+        <table border="0">
+          <tr>
+            <td class="labels" rowspan="2">
+              <label for="">Full name *</label>
+            </td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td id="small-text"><label for="">First</label></td>
+            <td id="small-text"><label for="">Last</label></td>
+          </tr>
+          <tr>
+            <td class="labels"><label for="">Email *</label></td>
+            <td colspan="2"><input type="email" /></td>
+          </tr>
+          <tr>
+            <td class="labels"><label for="">Phone</label></td>
+            <td colspan="2"><input type="tel" /></td>
+          </tr>
+          <tr>
+            <td class="labels">
+              <label for="">Where did we go wrong? *</label>
+            </td>
+            <td colspan="2">
+              <textarea rows="4" cols="45" name="" id=""></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <input id="sub-btn" type="submit" value="Submit" />
+            </td>
+          </tr>
+        </table>
+      </fieldset>
     </form>
-</body>
-
+  </body>
 </html>

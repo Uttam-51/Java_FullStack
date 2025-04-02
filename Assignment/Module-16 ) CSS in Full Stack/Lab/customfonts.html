@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Blog Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+
+        }
+
+        h1,
+        h2 {
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Blog Post Layout */
+        .blog-post {
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #8e44ad;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .content {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+            color: #34495e;
+        }
+
+        .content p {
+            margin-bottom: 25px;
+        }
+
+        .content a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Styles */
+        .featured-image {
+            width: 100%;
+            /* Make the image responsive */
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            opacity: 0;
+            /* Start with the image invisible */
+            animation: fadeIn 3s ease-out forwards;
+            /* Apply fade-in animation */
+        }
+
+        /* Animation to make the image fade in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                /* Start invisible */
+            }
+
+            100% {
+                opacity: 1;
+                /* End fully visible */
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #34495e;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<!-- 
+ Create a blog post layout with the following: 
+o A title, subtitle, and body content. 
+o Use at least two different fonts (one for headings, one for body content). 
+o Style the text to be responsive and easy to read. 
+ 
+Additional Requirements: 
+o Use a custom font from Google Fonts. 
+o Adjust line-height, font-size, and spacing for improved readability. 
+-->
+<body>
+
+    <header>
+        <div class="container">
+            <!-- Title and Subtitle -->
+            <h1>Embracing the Beauty of Everyday Life</h1>
+            <h2>Exploring the Wonders in the Smallest Moments</h2>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="blog-post">
+                <!-- Featured Image with Fade-in effect -->
+                <img class="featured-image"
+                    src="https://images.pexels.com/photos/28946912/pexels-photo-28946912/free-photo-of-heart-shaped-coffee-beans-with-fresh-brew.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Nature Image">
+
+                <!-- Blog Content -->
+                <div class="content">
+                    <p>Life is filled with countless small, beautiful moments—ones that can easily go unnoticed. Yet,
+                        these fleeting instances, like the warmth of the morning sun, the sound of raindrops on your
+                        window, or a smile from a stranger, are often the most profound.</p>
+
+                    <p>We tend to focus on big milestones, but it’s the simple joys that often bring us the most peace.
+                        When we take a moment to pause and appreciate these wonders, we realize that life’s true beauty
+                        lies in the small, everyday things.</p>
+
+                    <p>In this blog post, I’ll share some tips on how you can cultivate mindfulness in your day-to-day
+                        life, making space to embrace these beautiful, simple moments. <a href="#">Discover more</a> on
+                        how to live with intention and appreciate the world around you.</p>
+
+                    <p>By slowing down and truly experiencing the present moment, we open ourselves up to a deeper
+                        connection with both the world and ourselves. So, next time you’re walking outside, take a deep
+                        breath, listen to the sounds, and let the beauty of life fill your senses.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Enjoy The Life Blog | Created with Love</p>
+    </div>
+
+</body>
+
+</html>

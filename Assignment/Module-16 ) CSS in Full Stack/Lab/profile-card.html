@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+        /* Reset default margin, padding and box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: hsl(4, 100%, 91%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Giving height to align profile-card at the center of page */
+            height: 100vh;
+        }
+
+        /* Profile card container */
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px 30px;
+            width: 400px;
+            text-align: center;
+            /* Implicitly setting box-sizing property */
+            box-sizing: content-box;
+            transition: 0.3s;
+        }
+
+        /* Hover effect */
+        .profile-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Profile picture */
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #ff4a3d;
+            margin-bottom: 15px;
+             /* Border included in width,height calculations */
+            box-sizing: border-box;
+        }
+
+        /* User name */
+        .user-name {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* User bio */
+        .user-bio {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Follow button */
+        .follow-button {
+            background-color: #ff4a3d;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 60px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Button hover effect */
+        .follow-button:hover {
+            color: #ff1100;
+            font-weight: 600;
+            background-color: #ffb3ad;
+            transform: scaleX(1.1) scaleY(1.15);
+        }
+    </style>
+</head>
+<!-- 
+Task: Create a profile card layout using the box model. The profile card should 
+include: 
+o A profile picture. 
+o The user’s name and bio. 
+o A button to "Follow" the user. 
+ 
+Additional Requirements:  
+o Add padding and borders to the elements. 
+o Ensure the layout is clean and centered on the page using CSS margins. 
+o Use the box-sizing property to demonstrate both content-box and border-box 
+on different elements.
+-->
+<body>
+    <div class="profile-card">
+        <img src="https://img.freepik.com/free-vector/professional-programmer-engineer-writing-code_3446-693.jpg?t=st=1742627438~exp=1742631038~hmac=2bdafef70d9a587a42308c36f7cd30207545c0058d616c5bfabea9a91bf30ff1&w=826"
+            alt="Profile Picture" class="profile-picture">
+        <h2 class="user-name">Sammy Mistry</h2>
+        <p class="user-bio">Software Engineer | Tech Enthusiast | Social Worker</p>
+        <button class="follow-button">Follow</button>
+    </div>
+</body>
+
+</html>
