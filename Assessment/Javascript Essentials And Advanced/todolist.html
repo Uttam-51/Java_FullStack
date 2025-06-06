@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List with Cookies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d9d9d9;
+        }
+
+        .container {
+            background-color: #0f172a;
+            margin: 5vw auto;
+            padding: 1vw 2vw;
+            border-radius: 10px;
+            width: 50%;
+        }
+
+        .container h1 {
+            font-size: 2.25rem;
+            color: white;
+            text-align: center;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container #todo-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        #add-btn {
+            padding: 12px 60px;
+            background-color: #fdba74;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            background-color: #eef2f7;
+            border-radius: 5px;
+        }
+
+        #todo-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            color: #333;
+        }
+
+        #todo-list li:last-child {
+            border-bottom: none;
+        }
+
+        .delete-btn {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+            float: right;
+            font-weight: bold;
+            user-select: none;
+        }
+    </style>
+</head>
+<!-- 
+    -> In this page we are creating a simple todo list app, it uses cookies to store the list items for 15 days(it can be changed)
+    -> Each list item has a cross simple to delete it
+    -> The simple flow of logic is as described below
+        [Page Loads]
+              ↓
+        [Load Todos from Cookies]
+              ↓
+        [User Adds Task] ← (from button or Enter key)
+              ↓
+        [Add to List on Screen + Save to Cookie]
+              ↓
+        [User Deletes Task (❌)]
+              ↓
+        [Remove from Screen + Update Cookie]
+-->
+<body>
+    <div class="container">
+
+        <h1>Personalised todo list</h1>
+        <div class="input-container">
+            <input type="text" id="todo-input" placeholder="Add a new todo" />
+            <button id="add-btn">Add</button>
+        </div>
+        <ul id="todo-list">
+            <!-- Todo items will appear here -->
+        </ul>
+    </div>
+
+    <script>
+        // Getting references to HTML elements
+        const addBtn = document.getElementById('add-btn');
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+
+        // Helper function to get cookie by name
+        // This function retrieves a cookie value based on its name.
+        // 
+        // - document.cookie returns all cookies in a single string like:
+        //   "todos=%5B%22Read%20a%20book%22%2C%22Feed%20the%20dog%22%5D"
+        // - It splits the string using the provided name and retrieves its value.
+        // - Returns undefined if the cookie with the given name doesn't exist.
+        // 
+        function getCookie(name) {
+            let value = "; " + document.cookie;
+            let parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        // Helper function to set a cookie
+        // This function creates or updates a cookie with a name and value that persists for a given number of days.
+        // 
+        // - new Date().getTime() gives current timestamp in milliseconds.
+        // - We add days in milliseconds to define the expiration time.
+        // - .toUTCString() formats the expiration date for cookies.
+        // - The cookie is set with `document.cookie` using the format:
+        //   "name=value;expires=date;path=/"
+        //  
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+        }
+
+        // Function for adding a new todo item to list and cookie
+        //  - It gets the input value and trims whitespace.
+        //  - If the input is not empty:
+        //  - Adds the todo to the list (createTodoElement)
+        //  - Saves it to cookies (saveToCookies)
+        //  - Clears the input field.
+        function handleNewTodo() {
+            const newTodo = todoInput.value.trim();
+            if (newTodo !== "") {
+                createTodoElement(newTodo);
+                saveToCookies(newTodo);
+                todoInput.value = "";
+            }
+        }
+
+
+        // Adds event listener to button and text-input
+        // 
+        // When the button is clicked or when the enter key is pressed in text-input:
+        //  -calls the handleNewTodo() function
+        addBtn.addEventListener('click', handleNewTodo);
+        todoInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter')
+                handleNewTodo();
+        });
+
+        // Load todos from cookie when page loads
+        // When the page loads, this event runs the callback function.
+        // - Retrieves saved todos from the "todos" cookie.
+        // - Parses the JSON string into an array.
+        // - Loops through the array and creates list items for each saved todo.
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = getCookie("todos");
+            if (saved) {
+                 const todoArray = JSON.parse(decodeURIComponent(saved));
+                todoArray.forEach(todo => {
+                    createTodoElement(todo);
+                });
+            }
+        });
+
+        // Create a new <li> element and add to the list
+        // Dynamically creates a <li> element with the given text and adds it to the <ul>.
+        // - document.createElement('li') creates a new list item.
+        // - document.createElement('span') creates a delete icon.
+        // - .textContent sets the content inside the element.
+        // - .appendChild adds the new item to the bottom of the existing list.
+        function createTodoElement(text) {
+            const li = document.createElement('li');
+            li.textContent = text;
+
+            // Create a delete button
+            const deleteBtn = document.createElement('span');
+            deleteBtn.textContent = "\u274C";
+            deleteBtn.classList.add('delete-btn');
+
+            deleteBtn.addEventListener('click', () => {
+                li.remove(); // this deletes the <li> from the page
+
+                // Remove the item from the cookies
+                let saved = getCookie("todos");
+                let todoArray = saved ? JSON.parse(saved) : [];
+
+                // Filter out the deleted item (remove matching text)
+                const updatedArray = todoArray.filter(todo => todo.trim() !== text.trim());
+
+                // Update the cookie with the new array
+                setCookie("todos", JSON.stringify(updatedArray), 30);
+            });
+
+            // Append delete button to li
+            li.appendChild(deleteBtn);
+            // Append li to ul
+            todoList.appendChild(li);
+        }
+
+        // Save the new todo to cookie
+        // Updates the "todos" cookie with the new item added.
+        // - First, fetch existing cookie value using getCookie().
+        // - If it exists, parse it to get the array.
+        // - Push the new item to the array.
+        // - Use setCookie to update the cookie with the new array as a JSON string.
+        function saveToCookies(newItem) {
+            // Get the existing todos from cookie
+            let saved = getCookie("todos");
+            let todoArray = saved ? JSON.parse(saved) : [];
+
+            // Add the new item to todo-items list
+            todoArray.push(newItem);
+
+            // Update cookie
+            setCookie("todos", JSON.stringify(todoArray), 15); // store for 15 days
+        }
+    </script>
+</body>
+
+</html>
