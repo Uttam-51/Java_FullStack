@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab8</title>
+</head>
+<!-- 
+Task: 
+    o Create a JavaScript object car with properties brand, model, and year. Use 
+      JavaScript to: 
+      - Access and print the car’s brand and model. 
+      - Update the year property. 
+      - Add a new property color to the car object.
+-->
+<body>
+    <script>
+        let car = {
+            brand: "Mercedes",
+            model: "G63",
+            year: "2024"
+        }
+
+        console.log(`Car brand: ${car.brand}`);
+        console.log(`Car model: ${car.model}`);
+
+        car.year = "2025";
+        car.color = "Maroon";
+
+        console.log(car);
+
+    </script>
+</body>
+</html>

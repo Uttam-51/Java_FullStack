@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab5_2</title>
+</head>
+<!-- 
+Task 2: 
+    o Create a JavaScript program that uses a while loop to sum all even numbers 
+      between 1 and 20.
+-->
+
+<body>
+    <script>
+        let i = 1, sum = 0;
+
+        while (i < 20) {
+            if (i % 2 === 0)
+                sum += i;
+            i++;
+        }
+        console.log(`Sum of even numbers between 1 and 20: ${sum}`);
+    </script>
+</body>
+
+</html>

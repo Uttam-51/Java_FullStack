@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab11_1</title>
+</head>
+<!-- 
+ Task 1: 
+    o Write a program that changes the background color of a webpage after 5 seconds 
+      using setTimeout(). 
+
+-->
+<body style="background-color: rgb(198, 69, 69);">
+    <h1>Wait for 5 seconds to see magic...</h1>
+    <script>
+        setTimeout(()=>{
+            document.querySelector("body").style.backgroundColor = "rgb(69,198,198)";
+        }, 5000
+    );
+    </script>
+</body>
+</html>

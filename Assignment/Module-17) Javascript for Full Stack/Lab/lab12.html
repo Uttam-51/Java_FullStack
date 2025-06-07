@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab12</title>
+</head>
+<!-- 
+Task: 
+    o Write a JavaScript program that attempts to divide a number by zero. Use try
+      catch to handle the error and display an appropriate error message.
+
+-->
+
+<body>
+
+    <script>
+        let a = 0, b = 0, result = 0;
+
+        try {
+            result = a / b;
+            // We are throwing an error manually if the division result is not a finite number
+            // Because Javascript does not automatically throw an error when trying to divide by zero
+            if (!isFinite(result))
+                throw new Error("Division by zero is not allowed!");
+        }
+        // Catching the error and displaying it in alert
+        catch (error) {
+            alert(error);
+        }
+    </script>
+</body>
+
+</html>

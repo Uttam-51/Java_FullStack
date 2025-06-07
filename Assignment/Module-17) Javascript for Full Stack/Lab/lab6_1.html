@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab6_1</title>
+</head>
+<!-- 
+Task 1: 
+    o Write a function greetUser that accepts a user’s name as a parameter and displays 
+      a greeting message (e.g., "Hello, John!"). 
+-->
+
+<body>
+    <span>Enter your name: </span>
+    <input type="text" id="userInput" onkeyup="greetUser(userInput)">
+    <h1 id="greeting"></h1>
+    <script>
+        let greeting = document.getElementById("greeting");
+
+        function greetUser(username) {
+            if (username.value !== "" && username.value !== null)
+                greeting.textContent = `Hello, ${username.value}!`;
+            else
+                greeting.textContent = "";
+        }
+    </script>
+</body>
+
+</html>
