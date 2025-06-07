@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Store Users</title>
+  <style>
+    body {
+      margin: 20px;
+      background-color: #bababa;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 18px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 5px;
+      text-align: left;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>USER DATA</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  const jsonUrl = "https://fakestoreapi.in/api/users";
+
+  fetch(jsonUrl, {
+    method:"GET"
+  })
+    .then(res => {
+      return res.json();
+    })
+    .then((data) => {
+
+      // Generate HTML rows using map
+     let userdata = data.users.map((user,index) => {
+        return(
+          `<tr>
+          <td>${user.id}</td>
+          <td>${user.name.firstname}</td>
+          <td>${user.name.lastname}</td>
+          <td>${user.email}</td>
+          <td>${user.phone}</td>
+          <td>${user.address.city}</td>
+        </tr>`)
+    });
+    document.querySelector("tbody").innerHTML = userdata.join("")
+    })
+</script>
+
+</body>
+</html>

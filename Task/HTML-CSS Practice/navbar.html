@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <style>
+      ul {
+        background-color: rgb(255, 187, 187);
+      }
+
+      li {
+        padding: 15px 20px;
+        font-size: 1.4rem;
+        display: inline-block;
+        margin-left: 10px;
+        position: relative;
+      }
+      li:first-child {
+        margin-left: 3rem;
+      }
+      a {
+        display: block;
+        color: white;
+        text-decoration: none;
+      }
+
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 6px;
+        width: 0%;
+        background-color: #2fdab8;
+        transition: 0.4s;
+      }
+
+      li:hover::before {
+        width: 100%;
+        transition: 0.4s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">Next</a></li>
+      <li><a href="">Previous</a></li>
+      <li><a href="">About</a></li>
+      <li><a href="">Contact Us</a></li>
+    </ul>
+  </body>
+</html>

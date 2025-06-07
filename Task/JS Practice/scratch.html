@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        .body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            width: 330px;
+            height: 450px;
+            /* margin: 20px auto; */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 10px;
+            padding: 20px;
+            /* background: rgba(255, 255, 255, 0.1); */
+            background-color: rgba(28, 13, 40, 0.715);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        #display{
+            grid-column: 1/5;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 2.5rem;
+            padding: 20px 10px;
+            text-align: right;
+        }
+        .btn{
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgb(0, 0, 0);
+        }
+
+        .equal{
+            grid-column: 4;
+            grid-row: 5/7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <input type="text" value="8912345"  max="12" name="" id="display" disabled>
+        <button class="btn" onclick="addToDisplay()">C</button>
+        <button class="btn" onclick="calculate()">%</button>
+        <button class="btn" onclick="calculate()">*</button>
+        <button class="btn" onclick="calculate()">/</button>
+        <button class="btn" onclick="addToDisplay('0')">7</button>
+        <button class="btn" onclick="addToDisplay('0')">8</button>
+        <button class="btn" onclick="addToDisplay('0')">9</button>
+        <button class="btn" onclick="calculate()">-</button>
+        <button class="btn" onclick="addToDisplay('0')">4</button>
+        <button class="btn" onclick="addToDisplay('0')">5</button>
+        
+        <button class="btn" onclick="addNumber('0')">6</button>
+        <button class="btn" onclick="calculate()">+</button>
+        <button class="btn" onclick="addToDisplay('0')">1</button>
+        <button class="btn" onclick="addToDisplay('0')">2</button>
+        <button class="btn" onclick="addToDisplay('0')">3</button>
+        <button class="btn equal" onclick="calculate()">=</button>
+        <button class="btn" onclick="addToDisplay('0')">.</button>
+        <button class="btn" onclick="addToDisplay('0')">0</button>
+        <button class="btn" onclick="backspace()">&larr;</button>
+        
+        
+        
+        
+        
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

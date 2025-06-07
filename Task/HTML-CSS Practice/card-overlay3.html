@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image overlay with text</title>
+    <style>
+      .main {
+        position: relative;
+        width: 350px;
+        height: 250px;
+      
+      }
+
+      #img1 {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transform: scale(0);
+        transition: 0.3s;
+        z-index: 1;
+      }
+
+      .text-overlay {
+        width: inherit;
+        position: absolute;
+        text-align: center;
+        color: white;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        opacity: 0.75;
+        z-index: 2;
+      }
+      .text-overlay h3,
+      p {
+        margin: 10px 0px;
+        font-size: 2rem;
+      }
+      
+      .main:hover .overlay {  
+        transform: scale(1);
+        transition: 0.3s;
+   
+      }
+      .main:hover .text-overlay {
+        transform: translateY(-50%) scale(1);
+        transition: 0.5s;
+        transition-delay: 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="overlay">
+        <div class="text-overlay">
+            <h3>Factorship</h3>
+            <p>Lorel Ipsum</p>
+          </div>
+      </div>
+     
+      <img
+        id="img1"
+        src="https://wp.w3layouts.com/factorship/wp-content/themes/factorship/assets/images/g1.jpg"
+        alt=""
+      />
+    </div>
+  </body>
+</html>

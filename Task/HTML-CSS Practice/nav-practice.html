@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested lists with hover effect</title>
+    <style>
+        /* Reset list styles */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+            /* Remove background from all lists */
+        }
+
+        /* Outer list styling (horizontal using inline-block) */
+        .outer-list {
+            background-color: gray;
+            padding: 10px;
+        }
+
+        .outer-list>li {
+            position: relative;
+            color: white;
+            padding: 10px 20px;
+            /* Uniform padding for all lists */
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 150px;
+            /* Set width to ensure uniform size */
+            text-align: center;
+            /* Center text */
+            display: inline-block;
+            /* Make the first list horizontal */
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .outer-list>li:hover {
+            background-color: #555;
+        }
+
+        /* Middle list styling (vertical, hidden by default) */
+        .middle-list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            /* background-color: #f0f0f0; */
+            border-radius: 5px;
+            width: 150px;
+            /* Same width as outer list items */
+        }
+
+        .middle-list>li {
+            padding: 10px 20px;
+            /* Matching padding for middle list */
+            background-color: #d0e0e0;
+            margin: 2px;
+            width: 100%;
+            /* Ensure the list item spans the entire width */
+            text-align: center;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .middle-list>li:hover {
+            background-color: #b0c0c0;
+        }
+
+        /* Inner list styling (vertical, appears to the right of middle list) */
+        .inner-list {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            /* background-color: #c0c0ff; */
+            width: 150px;
+            /* Same width as the middle list */
+            border-radius: 5px;
+        }
+
+        .inner-list>li {
+            padding: 10px 20px;
+            /* Matching padding for inner list */
+            background-color: #c0c0ff;
+            margin: 2px;
+            width: 100%;
+            /* Ensure the list item spans the entire width */
+            text-align: center;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .inner-list>li:hover {
+            background-color: #a0a0ff;
+        }
+
+        /* Show middle list when hovering over parent list item */
+        .outer-list>li:hover .middle-list {
+            display: block;
+        }
+
+        /* Show inner list when hovering over middle list item */
+        .middle-list>li:hover .inner-list {
+            display: block;
+        }
+
+        /* Fix positioning of middle and inner lists to prevent overlap */
+        .outer-list>li {
+            position: relative;
+        }
+
+        .middle-list>li {
+            position: relative;
+            /* Ensures the nested inner list won't overlap */
+        }
+
+        .inner-list {
+            left: 100%;
+            /* Position to the right of the middle list */
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="outer-list">
+        <li>
+            Parent Item 1
+            <ul class="middle-list">
+                <li>
+                    Parent Item 1.1
+                    <ul class="inner-list">
+                        <li>Item 1.1.1</li>
+                        <li>Item 1.1.2</li>
+                        <li>Item 1.1.3</li>
+                        <li>Item 1.1.4</li>
+                        <li>Item 1.1.5</li>
+                    </ul>
+                </li>
+                <li>Item 1.2</li>
+                <li>Item 1.3</li>
+                <li>Item 1.4</li>
+                <li>Item 1.5</li>
+            </ul>
+        </li>
+        <li>
+            Parent Item 2
+            <ul class="middle-list">
+                <li>
+                    Parent Item 2.1
+                    <ul class="inner-list">
+                        <li>Item 2.1.1</li>
+                        <li>Item 2.1.2</li>
+                        <li>Item 2.1.3</li>
+                        <li>Item 2.1.4</li>
+                        <li>Item 2.1.5</li>
+                    </ul>
+                </li>
+                <li>Item 2.2</li>
+                <li>Item 2.3</li>
+                <li>Item 2.4</li>
+                <li>Item 2.5</li>
+            </ul>
+        </li>
+        <li>
+            Parent Item 3
+            <ul class="middle-list">
+                <li>
+                    Parent Item 3.1
+                    <ul class="inner-list">
+                        <li>Item 3.1.1</li>
+                        <li>Item 3.1.2</li>
+                        <li>Item 3.1.3</li>
+                        <li>Item 3.1.4</li>
+                        <li>Item 3.1.5</li>
+                    </ul>
+                </li>
+                <li>Item 3.2</li>
+                <li>Item 3.3</li>
+                <li>Item 3.4</li>
+                <li>Item 3.5</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+
+</html>

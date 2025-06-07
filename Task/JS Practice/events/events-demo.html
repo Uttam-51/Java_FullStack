@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS Events Demo</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="col1">
+      <h1>JS Events Demo (Mouse, Keyboard and Form events)</h1>
+
+      <div class="card">
+        <h2>Mouse Events</h2>
+        <button id="clickMe" onclick="handleClick()" ondblclick="handleDoubleClick()" onmousedown="handleMouseDown()"
+          onmouseup="handleMouseUp()" onmouseenter="startVibration()" onmouseleave="stopVibration()">Click Me</button>
+        <span id="hiddenMessage">How dare you to evoke a CYBER MONSTER!</span>
+
+        <div id="hoverBox" onmouseover="hoverStart()" onmouseout="hoverEnd()" ondblclick="handleBoxDoubleClick()">
+          You can call me a GIRGIT!
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Keyboard Events</h2>
+        <input type="text" id="keyInput" placeholder="Type here..." onkeydown="logKey(event)"
+          onkeyup="logKeyUp(event)" />
+        <textarea id="keyLogBox" placeholder="Keys pressed..." disabled></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Form Events</h2>
+        <form id="demoForm" onsubmit="submitForm(event)">
+          <input type="text" id="nameInput" placeholder="Your name" oninput="validateName()" />
+          <div id="nameError" class="error"></div>
+
+          <input type="email" id="emailInput" placeholder="Your email" oninput="validateEmail()" />
+          <div id="emailError" class="error"></div>
+
+          <input type="tel" id="phoneInput" placeholder="Your phone number" oninput="validatePhone()" />
+          <div id="phoneError" class="error"></div>
+
+          <input type="url" id="websiteInput" placeholder="Your website URL" oninput="validateWebsite()" />
+          <div id="websiteError" class="error"></div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
+    <div class="col2">
+      <div class="event-log">
+        <h3>Live Event Log</h3>
+        <ul id="logList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS Events Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 95%;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .container .col1 {
+      width: 70%;
+    }
+
+    .container .col2 {
+      display: flex;
+      width: 30%;
+      margin-top: 10vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Styling for cards containing sections */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #00ffd0;
+    }
+
+
+    @keyframes vibrate {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-2px);
+      }
+
+      50% {
+        transform: translateX(2px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    #clickMe {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #222;
+      border: 2px solid #00ffd0;
+      color: #00ffd0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #hoverBox {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #333;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #hoverBox.hovered {
+      background: #00ffd0;
+      color: #111;
+    }
+
+    #hoverBox.doubleClicked {
+      background: #ff00a1;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    #hiddenMessage {
+      display: none;
+      font-size: 1rem;
+      color: #00ffd0;
+      margin-left: 1rem;
+      font-style: italic;
+      transition: all 0.3s ease;
+    }
+
+    #keyInput {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #222;
+      border: 2px solid #555;
+      color: #eee;
+      border-radius: 8px;
+    }
+
+    #keyLogBox {
+      margin-top: 1rem;
+      width: 100%;
+      height: 100px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #111;
+      color: #00ffd0;
+      border: 2px solid #333;
+      border-radius: 8px;
+      resize: none;
+    }
+
+    form input {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 0.25rem;
+      background: #222;
+      border: 2px solid #444;
+      color: #eee;
+      border-radius: 8px;
+    }
+
+    .error {
+      color: #ff6060;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    form input:focus {
+      border-color: #00ffd0;
+      outline: none;
+    }
+
+    form button {
+      padding: 0.75rem;
+      width: 100%;
+      background: #00ffd0;
+      border: none;
+      color: #111;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .event-log {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #333;
+      padding: 1rem;
+      border-radius: 12px;
+      height: 80vh;
+      max-height: 80vh;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .event-log h3 {
+      margin: 0 0 0.5rem;
+      color: #0ff;
+    }
+
+    .event-log ul {
+      list-style: none;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .event-log li {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="col1">
+      <h1>JS Events Demo (Mouse, Keyboard and Form events)</h1>
+
+      <div class="card">
+        <h2>Mouse Events</h2>
+        <button id="clickMe" onclick="handleClick()" ondblclick="handleDoubleClick()" onmousedown="handleMouseDown()"
+          onmouseup="handleMouseUp()" onmouseenter="startVibration()" onmouseleave="stopVibration()">Click Me</button>
+        <span id="hiddenMessage">How dare you to evoke a CYBER MONSTER!</span>
+
+        <div id="hoverBox" onmouseover="hoverStart()" onmouseout="hoverEnd()" ondblclick="handleBoxDoubleClick()">
+          You can call me a GIRGIT!
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Keyboard Events</h2>
+        <input type="text" id="keyInput" placeholder="Type here..." onkeydown="logKey(event)"
+          onkeyup="logKeyUp(event)" />
+        <textarea id="keyLogBox" placeholder="Keys pressed..." disabled></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Form Events</h2>
+        <form id="demoForm" onsubmit="submitForm(event)">
+          <input type="text" id="nameInput" placeholder="Your name" oninput="validateName()" />
+          <div id="nameError" class="error"></div>
+
+          <input type="email" id="emailInput" placeholder="Your email" oninput="validateEmail()" />
+          <div id="emailError" class="error"></div>
+
+          <input type="tel" id="phoneInput" placeholder="Your phone number" oninput="validatePhone()" />
+          <div id="phoneError" class="error"></div>
+
+          <input type="url" id="websiteInput" placeholder="Your website URL" oninput="validateWebsite()" />
+          <div id="websiteError" class="error"></div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
+    <div class="col2">
+      <div class="event-log">
+        <h3>Live Event Log</h3>
+        <ul id="logList"></ul>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script>
+
+
+
+
+
+
+
+    // This function logs events to the event log section
+    function logEvent(msg) {
+      const logList = document.getElementById('logList');
+      const li = document.createElement('li');
+      const time = new Date().toLocaleTimeString(); // Get current time
+      li.textContent = `[${time}] ${msg}`; // Create log message
+      logList.prepend(li); // Add to the top of the log
+    }
+    // Mouse click event handler
+    function handleClick() {
+      logEvent("Button clicked");
+    }
+    // Mouse double-click event handler
+    function handleDoubleClick() {
+      logEvent("Button double-clicked");
+      showMessage(); // Show message after double click
+    }
+
+    // Mouse down event handler
+    function handleMouseDown() {
+      logEvent("Mouse down"); // Log mouse down event
+    }
+
+    // Mouse up event handler
+    function handleMouseUp() {
+      logEvent("Mouse up"); // Log mouse up event
+    }
+
+    function startVibration() {
+      // Add vibration animation to the button when mouse enters
+      let btn = document.getElementById('clickMe');
+      btn.style.background = "#00ffd0";
+      btn.style.color = "#111";
+      btn.style.animation = 'vibrate 0.3s linear infinite';
+    }
+
+    function stopVibration() {
+      // Stop the vibration animation when mouse leaves
+      let btn = document.getElementById('clickMe');
+      btn.style.background = "#222";
+      btn.style.color = "#00ffd0";
+      btn.style.animation = 'none';
+    }
+
+    function hoverStart() {
+      document.getElementById('hoverBox').classList.add('hovered');
+      logEvent("Mouse entered hover area");
+    }
+
+    function hoverEnd() {
+      document.getElementById('hoverBox').classList.remove('hovered');
+      logEvent("Mouse left hover area");
+    }
+
+    function handleBoxDoubleClick() {
+      const box = document.getElementById('hoverBox');
+      box.classList.toggle('doubleClicked');
+      logEvent("Box double-clicked");
+    }
+
+    function logKey(e) {
+      const box = document.getElementById('keyLogBox');
+      const key = e.key === " " ? "[SPACE]" : e.key;
+      box.value += key;
+      logEvent(`Key Down: ${key}`);
+    }
+
+    function logKeyUp(e) {
+      logEvent(`Key Up: ${e.key}`);
+    }
+
+    function showMessage() {
+      const message = document.getElementById('hiddenMessage');
+      message.style.display = 'inline';
+      setTimeout(() => {
+        message.style.display = 'none';
+      }, 2000);
+    }
+
+    // Validation Functions
+    function validateName() {
+      const name = document.getElementById('nameInput').value;
+      const errorDiv = document.getElementById('nameError');
+      const nameRegex = /^[A-Za-z]+(?:\s[A-Za-z]+){0,2}$/;
+
+      if (!nameRegex.test(name)) {
+        errorDiv.textContent = "Only alphabets allowed, max two words.";
+        return false;
+      }
+      errorDiv.textContent = "";
+      return true;
+    }
+
+    function validateEmail() {
+      const email = document.getElementById('emailInput').value;
+      const errorDiv = document.getElementById('emailError');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{3}$/;
+
+      if (!emailRegex.test(email)) {
+        errorDiv.textContent = "Please enter a valid email (e.g. abc@xyz.com)";
+        return false;
+      }
+
+      errorDiv.textContent = "";
+      return true;
+    }
+
+    function validatePhone() {
+      const phone = document.getElementById('phoneInput').value;
+      const errorDiv = document.getElementById('phoneError');
+      const phoneRegex = /^[0-9]{10}$/;
+      if (phone && !phoneRegex.test(phone)) {
+        errorDiv.textContent = "Phone number must be 10 digits.";
+        return false;
+      }
+      errorDiv.textContent = "";
+      return true;
+    }
+
+    function validateWebsite() {
+      let website = document.getElementById('websiteInput').value.trim();
+      const errorDiv = document.getElementById('websiteError');
+
+      // If user didn't include http:// or https://, add https:// by default
+      if (website && !website.startsWith('http://') && !website.startsWith('https://')) {
+        website = 'https://' + website;
+        document.getElementById('websiteInput').value = website; // Update input field
+      }
+
+      const websiteRegex = /^(https?:\/\/)?(www\.)?[\w\-]+\.[\w\-]+\.[a-zA-Z]{2,3}$/;
+
+      if (website && !websiteRegex.test(website)) {
+        errorDiv.textContent = "Enter a valid URL (e.g. www.example.com)";
+        return false;
+      }
+
+      errorDiv.textContent = "";
+      return true;
+    }
+
+
+    function submitForm(e) {
+      e.preventDefault();
+      
+
+      const validName = validateName();
+      const validEmail = validateEmail();
+      const validPhone = validatePhone();
+      const validWebsite = validateWebsite();
+
+      if (validName && validEmail && validPhone && validWebsite) {
+        logEvent("Form submitted successfully");
+        alert("Form submitted successfully!");
+        e.target.reset();
+        document.querySelectorAll('.error').forEach(el => el.textContent = '');
+      } else {
+        logEvent("Form submittion unsuccessful");
+        alert("Please correct the errors before submitting.");
+      }
+    }
+  </script>
+</body>
+
+</html>

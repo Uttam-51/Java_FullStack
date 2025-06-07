@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light/Dark Mode Toggle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFF8DC; /* Light mode background */
+            color: #333; /* Light mode text color */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            width: 70px;
+            height: 40px;
+            background: #ccc;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .theme-toggle label::before,
+        .theme-toggle label::after {
+            content: '🌙'; /* Moon icon */
+            position: absolute;
+            top: 50%;
+            font-size: 22px;
+            transform: translateY(-50%);
+            transition: left 0.3s, opacity 0.3s;
+        }
+
+        .theme-toggle label::before {
+            left: 5px; /* Moon on left */
+        }
+
+        .theme-toggle label::after {
+            content: '🌞'; /* Sun icon */
+            left: 30px; /* Sun on right */
+            opacity: 0;
+        }
+
+        .theme-toggle input:checked + label {
+            background: #2C3E50; /* Dark mode background */
+        }
+
+        .theme-toggle input:checked + label::before {
+            left: 30px; /* Move moon to the right */
+            opacity: 0;
+        }
+
+        .theme-toggle input:checked + label::after {
+            opacity: 1; /* Show sun */
+            left: 5px; /* Move sun to the left */
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggle" onclick="toggleMode()">
+        <label for="toggle"></label>
+    </div>
+
+
+
+    <script>
+        function toggleMode() {
+            const toggle = document.getElementById('toggle');
+            
+            if (toggle.checked) {
+                document.body.style.backgroundColor = '#2C3E50';  // Dark mode background
+                document.body.style.color = '#ecf0f1';              // Dark mode text color
+            } else {
+                document.body.style.backgroundColor = '#FFF8DC';  // Light mode background
+                document.body.style.color = '#333';               // Light mode text color
+            }
+        }
+    </script>
+</body>
+</html>

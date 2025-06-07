@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidder</title>
+    <style>
+        .main {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+            border: 2px solid;
+        }
+
+        .img-sec {
+            height: 650px;
+            overflow: hidden;
+            border: 2px solid black;
+
+        }
+
+        .left-btn,
+        .right-btn {
+            position: absolute;
+            z-index: 1;
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 80px;
+            font-weight: 900;
+            border: none;
+            height: 100%;
+            cursor: pointer;
+            background: none;
+        }
+
+
+
+        .left-btn {
+            padding: 0 150px 0 30px;
+        }
+
+        .right-btn {
+            right: 0;
+            padding: 0 30px 0 150px;
+        }
+
+        .left-btn:hover {
+            color: white;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.874), rgba(255, 255, 255, 0));
+        }
+
+        .right-btn:hover {
+            color: white;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.874));
+        }
+
+        .img{display: none;}
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <button class="left-btn" onclick="change_image('left')">&lt;</button>
+        <button class="right-btn" onclick="change_image('right')">&gt;</button>
+        <div class="img-sec">
+            <img src="/Images/Slider/img1.jpg" alt="" height="100%" width="100%" class="img">
+            <img src="/Images/Slider/img2.jpg" alt="" height="100%" width="100%" class="img">
+            <img src="/Images/Slider/img3.jpg" alt="" height="100%" width="100%" class="img">
+            <img src="/Images/Slider/img4.jpg" alt="" height="100%" width="100%" class="img">
+            <img src="/Images/Slider/img5.jpg" alt="" height="100%" width="100%" class="img">
+            <img src="/Images/Slider/img6.jpg" alt="" height="100%" width="100%" class="img">
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+        let img_tag = document.getElementsByClassName("img");
+        let index = 0;
+
+        // Show the first image manually
+        img_tag[index].style.display = "block";
+
+        function change_image(direction) {
+            // Hiding the current image
+            console.log(img_tag[index].src);
+            img_tag[index].style.display = "none";
+
+            // Increment or decrement the index as per the value of parameter
+            direction == "right" ? index++ : index--;
+
+            // Safety net to avoid iterating above and below the image collection bounds
+            //In other words we are resetting the value of index as soon as it
+            //tries to go below 0 or above the total number of images
+            if (index === img_tag.length) {
+                index = 0;
+            } else if (index < 0) {
+                index = img_tag.length - 1;
+            }
+            console.log(img_tag[index].src);
+            // Display the new image as per updated value of index 
+            img_tag[index].style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>
