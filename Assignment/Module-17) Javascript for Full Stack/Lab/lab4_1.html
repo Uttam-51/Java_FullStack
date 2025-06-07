@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab4_1</title>
+</head>
+<!-- 
+Task 1: 
+    o Write a JavaScript program to check if a number is positive, negative, or zero using 
+      an if-else statement. 
+-->
+
+<body>
+    <span>Enter the number: </span>
+    <input onkeyup="checksign()" id="user-inp" type="text">
+    <p id="result"></p>
+    <script>
+        let userInput = document.getElementById("user-inp");
+        let result = document.getElementById("result");
+
+        function checksign() {
+            let num = userInput.value;
+
+            if (num !== null && num !== "") {
+                if (num > 0)
+                    result.textContent = `${num} is Positive number`;
+                else if (num < 0)
+                    result.textContent = `${num} is Negative number`;
+                else if (num === 0)
+                    result.textContent = `Given number is Zero.`;
+                else
+                    result.textContent = `${num} is NOT a number!`;
+            }
+            else {
+                result.textContent = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

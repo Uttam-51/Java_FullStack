@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab11_2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 6, 61);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #dig-clock {
+            margin: 150px auto;
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.35);
+            color: #aaff00;
+            border: 2px solid #aaff00;
+            box-shadow: 0 0 30px rgba(170, 255, 0, 0.5);
+            border-radius: 20px;
+            font-size: 80px;
+            padding: 40px 60px;
+            letter-spacing: 5px;
+            transition: 0.25s;
+        }
+
+        #dig-clock:hover {
+            box-shadow: 0 0 50px rgba(0, 255, 204, 0.8);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Div for displaying clock -->
+    <div id="dig-clock"></div>
+
+    <script>
+
+        // helper function to make sure that each field of clock alwats display 2 digits
+        function formatTwoDigits(num) {
+            return num < 10 ? '0' + num : '' + num;
+        }
+
+        // function to set the clock from the current time of system
+        function updateClock() {
+            let time = new Date();
+
+            document.getElementById("dig-clock").textContent = formatTwoDigits(time.getHours()) + ":" +
+                formatTwoDigits(time.getMinutes()) + ":" +
+                formatTwoDigits(time.getSeconds());;
+
+        }
+
+        //Calling the function for first time
+        updateClock();
+
+        //Calling the function after 1 second repeatedly
+        setInterval(updateClock, 1000); 
+    </script>
+
+</body>
+
+</html>

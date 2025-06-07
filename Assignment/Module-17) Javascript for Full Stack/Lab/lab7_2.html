@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab7_2</title>
+</head>
+<!-- 
+Task 2: 
+    o Write a program to find the sum of all elements in an array of numbers.
+-->
+<body>
+    <script>
+        let numbers = [1,4,5,7,32,12];
+
+        console.log(`Array ==> ${numbers}`);
+
+        function addition(numbers = []){
+            let sum = 0;
+            for(number of numbers){
+                sum += number;
+            }
+            return sum;
+        }
+
+        console.log(`Addition ==> ${addition(numbers)}`)
+    </script>
+</body>
+</html>
