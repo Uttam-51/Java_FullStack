@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- This example depicts the use of importing icons from FONTAWESOME and applying a cool effect to
+     its background whenever hovered on -->
+    <style>
+      /* setting up the main div or container */
+      .main {
+        width: 300px;
+        height: 300px;
+        background-color: #212121;
+     
+      }
+    
+      /* styling the icon we imported from the FONTAWESOME */
+      i {
+        width: 90px;
+        height: 80px;
+        margin-top: 0px;
+        color: white;
+        font-size: 5rem;
+        display: block;
+        transform: translate(6.5rem, -12rem);
+      }
+      .bg-new {
+        width: 300px;
+        height: 300px;
+        background-color: #2fdab8;
+        transform: scale(0);
+        transition: 0.3s;
+      }
+      .main:hover .bg-new {
+        transform: scale(1);
+        transition: 0.3s;
+    
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="bg-new"></div>
+      <i class="fa-solid fa-house"></i>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #111;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+  }
+
+  .container .col1 {
+    width: 70%;
+  }
+
+  .container .col2 {
+    display: flex;
+    width: 30%;
+    margin-top: 10vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Styling for cards containing sections */
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .card h2 {
+    margin-top: 0;
+    color: #00ffd0;
+  }
+
+
+  @keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-2px);
+    }
+
+    50% {
+      transform: translateX(2px);
+    }
+
+    75% {
+      transform: translateX(-2px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  #clickMe {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background: #222;
+    border: 2px solid #00ffd0;
+    color: #00ffd0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #hoverBox {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #333;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  #hoverBox.hovered {
+    background: #00ffd0;
+    color: #111;
+  }
+
+  #hoverBox.doubleClicked {
+    background: #ff00a1;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  #hiddenMessage {
+    display: none;
+    font-size: 1rem;
+    color: #00ffd0;
+    margin-left: 1rem;
+    font-style: italic;
+    transition: all 0.3s ease;
+  }
+
+  #keyInput {
+    width: 95%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: #222;
+    border: 2px solid #555;
+    color: #eee;
+    border-radius: 8px;
+  }
+
+  #keyLogBox {
+    margin-top: 1rem;
+    width: 95%;
+    height: 100px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: #111;
+    color: #00ffd0;
+    border: 2px solid #333;
+    border-radius: 8px;
+    resize: none;
+  }
+
+  form input {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin-bottom: 0.25rem;
+    background: #222;
+    border: 2px solid #444;
+    color: #eee;
+    border-radius: 8px;
+  }
+
+  .error {
+    color: #ff6060;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  form input:focus {
+    border-color: #00ffd0;
+    outline: none;
+  }
+
+  form button {
+    padding: 0.75rem;
+    width: 95%;
+    background: #00ffd0;
+    border: none;
+    color: #111;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .event-log {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    padding: 1rem;
+    border-radius: 12px;
+    height: 80vh;
+    max-height: 80vh;
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  .event-log h3 {
+    margin: 0 0 0.5rem;
+    color: #0ff;
+  }
+
+  .event-log ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .event-log li {
+    margin-bottom: 0.25rem;
+  }

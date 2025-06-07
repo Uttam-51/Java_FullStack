@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cool Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Themes */
+        body.dark {
+            background-color: #111;
+            color: #fff;
+        }
+
+        body.light {
+            background: #f4f4f4;
+            color: #111;
+        }
+
+        /* Calculator Container */
+        .calculator {
+            width: 320px;
+            background: #222;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        body.light .calculator {
+            background: #fff;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Display */
+        #display {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 20px;
+            min-height: 40px;
+        }
+
+        body.light #display {
+            background: #eee;
+            color: #333;
+        }
+
+        /* Buttons Grid */
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn.operator {
+            background: #f57c00;
+        }
+
+        .btn.equal {
+            background: #009688;
+            grid-column: span 2;
+        }
+
+        .btn.clear {
+            background: #d32f2f;
+        }
+
+        .btn.zero {
+            grid-column: span 2;
+        }
+
+        body.light .btn {
+            background: #ddd;
+            color: #000;
+        }
+
+        body.light .btn.operator {
+            background: #ffc107;
+        }
+
+        body.light .btn.equal {
+            background: #4caf50;
+        }
+
+        body.light .btn.clear {
+            background: #e53935;
+            color: #fff;
+        }
+
+        /* Toggle Switch */
+        .theme-toggle {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            color: inherit;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="dark">
+    <div class="calculator">
+        <!-- Theme Toggle Switch -->
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i id="themeToggle" class="fas fa-sun"></i>
+        </button>
+
+        <!-- Calculator Display -->
+        <div id="display">0</div>
+
+        <!-- Buttons Grid -->
+        <div class="buttons">
+            <button class="btn clear" onclick="clearDisplay()">C</button>
+            <button class="btn" onclick="backspace()">←</button>
+            <button class="btn operator" onclick="appendOperator('%')">%</button>
+            <button class="btn operator" onclick="appendOperator('/')">÷</button>
+
+            <button class="btn" onclick="appendValue('7')">7</button>
+            <button class="btn" onclick="appendValue('8')">8</button>
+            <button class="btn" onclick="appendValue('9')">9</button>
+            <button class="btn operator" onclick="appendOperator('*')">×</button>
+
+            <button class="btn" onclick="appendValue('4')">4</button>
+            <button class="btn" onclick="appendValue('5')">5</button>
+            <button class="btn" onclick="appendValue('6')">6</button>
+            <button class="btn operator" onclick="appendOperator('-')">−</button>
+
+            <button class="btn" onclick="appendValue('1')">1</button>
+            <button class="btn" onclick="appendValue('2')">2</button>
+            <button class="btn" onclick="appendValue('3')">3</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+            <button class="btn zero" onclick="appendValue('0')">0</button>
+            <button class="btn" onclick="appendValue('.')">.</button>
+            <button class="btn equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM references
+        const display = document.getElementById('display');
+        const themeIcon = document.getElementById('themeToggle');
+
+        // Calculator state
+        let currentInput = '';
+        let operator = null;
+        let firstOperand = null;
+        let isDark = true;
+
+        // Append digits and single decimal point
+        function appendValue(val) {
+            if (val === '.' && currentInput.includes('.')) return; // Prevent multiple dots
+
+            if (display.innerText === '0' || display.innerText === 'Error') {
+                display.innerText = val;
+            } else {
+                display.innerText += val;
+            }
+
+            currentInput += val;
+        }
+
+        // Handle operator (+, -, *, /, %)
+        function appendOperator(op) {
+            if (operator !== null || currentInput === '') return;
+
+            firstOperand = parseFloat(currentInput);
+            operator = op;
+            currentInput = '';
+            display.innerText += op;
+        }
+
+        // Clear display and reset state
+        function clearDisplay() {
+            display.innerText = '0';
+            currentInput = '';
+            operator = null;
+            firstOperand = null;
+        }
+
+        // Remove last character from input
+        function backspace() {
+            if (display.innerText.length <= 1 || display.innerText === 'Error') {
+                clearDisplay();
+                return;
+            }
+
+            const lastChar = display.innerText.slice(-1);
+            display.innerText = display.innerText.slice(0, -1);
+
+            if (['+', '-', '*', '/', '%'].includes(lastChar)) {
+                operator = null;
+                currentInput = firstOperand?.toString() ?? '';
+            } else {
+                currentInput = currentInput.slice(0, -1);
+            }
+        }
+
+        // Theme toggle between light and dark
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.className = isDark ? 'dark' : 'light';
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Perform the calculation with one operator only
+        function calculate() {
+            if (operator === null || currentInput === '') return;
+
+            const secondOperand = parseFloat(currentInput);
+            let result;
+
+            switch (operator) {
+                case '+': result = firstOperand + secondOperand; break;
+                case '-': result = firstOperand - secondOperand; break;
+                case '*': result = firstOperand * secondOperand; break;
+                case '/': result = secondOperand !== 0 ? firstOperand / secondOperand : 'Error'; break;
+                case '%': result = firstOperand % secondOperand; break;
+                default: result = 'Error';
+            }
+
+            display.innerText = result;
+            currentInput = result.toString();
+            operator = null;
+            firstOperand = null;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Glass Calculator with Theme Toggle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #202020, #0f0f0f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    #display {
+      grid-column: span 4;
+      padding: 15px;
+      font-size: 2rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: right;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .span-two {
+      grid-column: span 2;
+    }
+
+    .theme-toggle {
+      grid-column: span 4;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .toggle-wrapper {
+      width: 60px;
+      height: 30px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      transition: all 0.4s ease;
+      color: gold;
+      opacity: 1;
+    }
+
+    .sun-icon {
+      left: 8px;
+    }
+
+    .moon-icon {
+      right: 8px;
+      opacity: 0;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator" id="calculator">
+    <input type="text" id="display" disabled />
+
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="backspace()">⌫</button>
+    <button onclick="appendOperator('%')">%</button>
+    <button onclick="appendOperator('/')">/</button>
+
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="appendOperator('*')">*</button>
+
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendOperator('-')">-</button>
+
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendOperator('+')">+</button>
+
+    <button onclick="appendNumber('0')" class="span-two">0</button>
+    <button onclick="appendDecimal()">.</button>
+    <button onclick="calculate()">=</button>
+
+    <div class="theme-toggle">
+      <div class="toggle-wrapper" onclick="toggleTheme()">
+        <i class="fas fa-sun toggle-icon sun-icon" id="sunIcon"></i>
+        <i class="fas fa-moon toggle-icon moon-icon" id="moonIcon"></i>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+    // let calculator = document.getElementById("calculator");
+    // let sun = document.getElementById("sunIcon");
+    // let moon = document.getElementById("moonIcon");
+
+    let firstOperand = "";
+    let secondOperand = "";
+    let operator = "";
+
+    // Flags
+    let isSecondOperand = false; 
+    let decimalUsedInFirst = false;
+    let decimalUsedInSecond = false;
+    let isLight = false;
+
+    function updateDisplay() {
+      display.value = firstOperand + operator + secondOperand;
+    }
+
+    function appendNumber(num) {
+      if (!isSecondOperand) {
+        firstOperand += num;
+      } else {
+        secondOperand += num;
+      }
+      updateDisplay();
+    }
+
+    function appendOperator(op) {
+      if (firstOperand === "" || operator !== "") return;
+      operator = op;
+      isSecondOperand = true;
+      updateDisplay();
+    }
+
+    function appendDecimal() {
+      if (!isSecondOperand && !decimalUsedInFirst) {
+        firstOperand += firstOperand === "" ? "0." : ".";
+        decimalUsedInFirst = true;
+      } else if (isSecondOperand && !decimalUsedInSecond) {
+        secondOperand += secondOperand === "" ? "0." : ".";
+        decimalUsedInSecond = true;
+      }
+      updateDisplay();
+    }
+
+    function calculate() {
+      if (firstOperand === "" || secondOperand === "" || operator === "") return;
+      let a = parseFloat(firstOperand);
+      let b = parseFloat(secondOperand);
+      let result = 0;
+
+      if (operator === '+') result = a + b;
+      else if (operator === '-') result = a - b;
+      else if (operator === '*') result = a * b;
+      else if (operator === '/') result = b === 0 ? "Err" : a / b;
+      else if (operator === '%') result = a % b;
+
+      display.value = result;
+      firstOperand = "" + result;
+      secondOperand = "";
+      operator = "";
+      isSecondOperand = false;
+      decimalUsedInFirst = firstOperand.includes(".");
+      decimalUsedInSecond = false;
+    }
+
+    function clearDisplay() {
+      firstOperand = "";
+      secondOperand = "";
+      operator = "";
+      isSecondOperand = false;
+      decimalUsedInFirst = false;
+      decimalUsedInSecond = false;
+      display.value = "";
+    }
+
+    function backspace() {
+      if (isSecondOperand && secondOperand !== "") {
+        let last = secondOperand.charAt(secondOperand.length - 1);
+        secondOperand = secondOperand.slice(0, -1);
+
+        if (last === ".") decimalUsedInSecond = false;
+      } else if (operator !== "") {
+        operator = "";
+        isSecondOperand = false;
+      } else if (firstOperand !== "") {
+        let last = firstOperand.charAt(firstOperand.length - 1);
+        firstOperand = firstOperand.slice(0, -1);
+        if (last === ".") decimalUsedInFirst = false;
+      }
+      updateDisplay();
+    }
+
+    function toggleTheme() {
+      if (!isLight) {
+        calculator.style.background = "rgba(255, 255, 255, 0.85)";
+        calculator.style.color = "#111";
+        display.style.background = "rgba(255, 255, 255, 0.6)";
+        display.style.color = "#111";
+
+        for (let i = 0; i <= 19; i++) {
+          document.getElementsByTagName("button")[i].style.background = "rgba(0, 0, 0, 0.05)";
+          document.getElementsByTagName("button")[i].style.color = "#111";
+        }
+
+        sun.style.opacity = "0";
+        sun.style.transform = "translateX(30px)";
+        moon.style.opacity = "1";
+        moon.style.transform = "translateX(0px)";
+
+        isLight = true;
+      } else {
+        calculator.style.background = "rgba(255, 255, 255, 0.1)";
+        calculator.style.color = "white";
+        display.style.background = "rgba(0,0,0,0.6)";
+        display.style.color = "white";
+
+        for (let i = 0; i <= 19; i++) {
+          document.getElementsByTagName("button")[i].style.background = "rgba(255,255,255,0.2)";
+          document.getElementsByTagName("button")[i].style.color = "white";
+        }
+
+        sun.style.opacity = "1";
+        sun.style.transform = "translateX(0px)";
+        moon.style.opacity = "0";
+        moon.style.transform = "translateX(-30px)";
+
+        isLight = false;
+      }
+    }
+  </script>
+
+</body>
+</html>
